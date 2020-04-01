@@ -18,11 +18,11 @@ class XCalendarClock extends BaseElement {
     }
     connectedCallback() {
         super.connectedCallback();
-        dateService.on('second-changed', this._onSecondChanged);
+        dateService.on(dateService.SECOND_CHANGED, this._onSecondChanged);
     }
     disconnectedCallback() {
         super.disconnectedCallback();
-        dateService.off('second-changed', this._onSecondChanged);
+        dateService.off(dateService.SECOND_CHANGED, this._onSecondChanged);
     }
     _onSecondChanged() {
         this.$text.textContent = this.timeString;

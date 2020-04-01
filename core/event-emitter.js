@@ -1,7 +1,7 @@
 class EventEmitter {
     constructor() {
         // eventos a [cb]
-        this._subscriptions = {};
+        this._subscriptions = Object.create(null);
     }
     on(type, cb) {
         // para el evento de tipo type, anadir la cb

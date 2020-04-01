@@ -9,6 +9,9 @@ class DateService extends EventEmitter {
     get SECOND_CHANGED() {
         return 'second-changed';
     }
+    get DAY_CHANGED(){
+        return 'day-changed';
+    }
     get date() {
         return this._date;
     }
@@ -32,3 +35,5 @@ class DateService extends EventEmitter {
     }
 }
 export const dateService = new DateService();
+// TODO: quitar napa
+window.dateService = dateService;

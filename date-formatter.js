@@ -8,7 +8,7 @@ class DateFormatter {
     static dateString(date) {
         // TODO: implimentar este metodo
         // miercoles, 1 de abril de 2020
-        
+        return date;
     }
     static monthString(date){
 

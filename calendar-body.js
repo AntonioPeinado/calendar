@@ -1,7 +1,7 @@
 import { BaseElement } from './core/base-element.js';
 import { dateService } from './date-service.js';
 import './calendar-summary.js';
-import './calendar-navigation.js';
+import './calendar-navigation.js';24
 
 class XCalendarBody extends BaseElement {
     constructor() {

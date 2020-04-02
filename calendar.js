@@ -1,7 +1,7 @@
 import { BaseElement } from './core/base-element.js';
 import { dateService } from './date-service.js';
 import './calendar-header.js';
-// TODO: importar calendar-body
+import './calendar-body.js';
 
 class XCalendar extends BaseElement {
     connectedCallback(){

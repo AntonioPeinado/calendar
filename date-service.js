@@ -1,5 +1,5 @@
 import { EventEmitter } from './core/event-emitter.js';
-import {config} from './config.js';
+import { config } from './config.js';
 
 class DateService extends EventEmitter {
     constructor() {
@@ -9,8 +9,11 @@ class DateService extends EventEmitter {
     get SECOND_CHANGED() {
         return 'second-changed';
     }
-    get DAY_CHANGED(){
+    get DAY_CHANGED() {
         return 'day-changed';
+    }
+    get MONTH_CHANGED() {
+        return 'month-changed';
     }
     get date() {
         return this._date;
@@ -26,14 +29,15 @@ class DateService extends EventEmitter {
         window.clearInterval(this._interval);
     }
     _updateDate() {
-        const newDate = new Date();
-        // comparar this._date con newDate
-        // TODO: comprobar si cambio de dia y en ese
-        // caso emitir el evento day-changed
-        this._date = newDate;
+        const oldDate = this._date;
+        this._date = new Date();
+        if (oldDate.getMonth() !== this._date.getMonth()) {
+            this.emit(this.MONTH_CHANGED, this._date);
+        }
+        if(oldDate.getDate() !== this._date.getDate()){
+            this.emit(this.DAY_CHANGED, this._date);
+        }
         this.emit(this.SECOND_CHANGED, this._date);
     }
 }
 export const dateService = new DateService();
-// TODO: quitar napa
-window.dateService = dateService;

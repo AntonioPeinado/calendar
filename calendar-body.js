@@ -8,7 +8,7 @@ import './calendar-month.js';
 class XCalendarBody extends BaseElement {
     constructor() {
         super();
-        this._selectedDate = dateService.date;
+        this._selectedDate = new Date(dateService.date);
     }
     connectedCallback() {
         super.connectedCallback();

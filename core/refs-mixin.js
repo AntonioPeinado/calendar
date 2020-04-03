@@ -10,6 +10,10 @@ function RefsMixin(Super) {
                 this.$[el.id] = el;
             });
         }
+        disconnectedCallback(){
+            super.disconnectedCallback();
+            this.$ = {};
+        }
     }
 }
 

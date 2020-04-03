@@ -1,4 +1,4 @@
-export const WEEK_DAYS = [
+export const WEEKDAYS = [
     'domingo',
     'lunes',
     'martes',
@@ -8,14 +8,14 @@ export const WEEK_DAYS = [
     'sábado',
 ];
 
-export const WEEK_DAY_LETTERS = [
+export const WEEKDAY_LETTERS = [
+    'D',
     'L',
     'M',
     'X',
     'J',
     'V',
     'S',
-    'D'
 ];
 
 export const MONTHS = [

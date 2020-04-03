@@ -1,4 +1,4 @@
-import {WEEK_DAYS, MONTHS} from './date-constants.js';
+import {WEEKDAYS, MONTHS} from './date-constants.js';
 class DateFormatter {
     static timeString(date) {
         const hours = this._twoDigits(date.getHours());
@@ -7,7 +7,7 @@ class DateFormatter {
         return `${hours}:${minutes}:${seconds}`;
     }
     static dateString(date) {
-        const weekday = WEEK_DAYS[date.getDay()];
+        const weekday = WEEKDAYS[date.getDay()];
         const day = date.getDate();
         const month = MONTHS[date.getMonth()];
         const year = date.getFullYear();

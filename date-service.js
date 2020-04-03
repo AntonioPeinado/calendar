@@ -2,9 +2,9 @@ import { EventEmitter } from './core/event-emitter.js';
 import { config } from './config.js';
 
 class DateService extends EventEmitter {
-    constructor() {
+    constructor(date) {
         super();
-        this._date = new Date();
+        this._date = date;
     }
     get SECOND_CHANGED() {
         return 'second-changed';
@@ -22,18 +22,18 @@ class DateService extends EventEmitter {
         this._updateDate();
         this._interval = window.setInterval(
             this._updateDate.bind(this),
-            config.refreshInterval
+            config.refreshInterval * 1000
         );
     }
     stop() {
-        window.clearInterval(this._interval);
+        this._interval && window.clearInterval(this._interval);
     }
     isToday(date){
         return date.toDateString() === this._date.toDateString();
     }
     _updateDate() {
-        const oldDate = this._date;
-        this._date = new Date();
+        const oldDate = new Date(this._date);
+        this._date.setSeconds(this._date.getSeconds() + config.refreshInterval);
         if (oldDate.getMonth() !== this._date.getMonth()) {
             this.emit(this.MONTH_CHANGED, this._date);
         }
@@ -43,4 +43,4 @@ class DateService extends EventEmitter {
         this.emit(this.SECOND_CHANGED, this._date);
     }
 }
-export const dateService = new DateService();
+export const dateService = new DateService(new Date());

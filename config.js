@@ -1,5 +1,5 @@
 export const config = {
-    refreshInterval: 1000,
+    refreshInterval: 1,
     monthRows: 6,
     startDay: 1
 };

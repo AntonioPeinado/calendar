@@ -2,8 +2,8 @@ import { BaseElement } from './core/base-element.js';
 import { MonthHelper } from './month-helper.js';
 import { config } from './config.js';
 import { dateService } from './date-service.js'
-
 import './calendar-day.js';
+
 const DAYS_PER_WEEK = 7;
 
 class XCalendarMonth extends BaseElement {
@@ -16,10 +16,20 @@ class XCalendarMonth extends BaseElement {
     connectedCallback(){
         super.connectedCallback();
         this.addEventListener('click', this._onClick);
+        dateService.on(dateService.DAY_CHANGED, this._onDayChanged);
+    }
+    disconnectedCallback(){
+        super.disconnectedCallback();
+        this.removeEventListener('click', this._onClick);
+        dateService.off(dateService.DAY_CHANGED, this._onDayChanged);
     }
     update(date) {
         this.setAttribute('data-date', date);
         this.shadowRoot.innerHTML = this.render();
+    }
+    _onDayChanged = (date) => {
+        this.shadowRoot.querySelector('[data-today]').removeAttribute('data-today');
+        this.shadowRoot.querySelector(`[data-date="${date.toDateString()}"`).setAttribute('data-today', '');
     }
     _onClick = (ev) => {
         const newSelectedDay = this._findCalendarDay(ev.path);
@@ -41,7 +51,7 @@ class XCalendarMonth extends BaseElement {
         if (day.getMonth() !== this.date.getMonth()) {
             attrs.push('data-outside');
         }
-        return `<x-calendar-day ${attrs.join(' ')} data-date="${day}"></x-calendar-day>`
+        return `<x-calendar-day ${attrs.join(' ')} data-date="${day.toDateString()}"></x-calendar-day>`
     }
     _renderDays() {
         return this.days.map((day) => this._renderDay(day)).join('')

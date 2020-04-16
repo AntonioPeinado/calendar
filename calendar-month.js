@@ -7,6 +7,9 @@ import './calendar-day.js';
 const DAYS_PER_WEEK = 7;
 
 class XCalendarMonth extends BaseElement {
+    static get styles(){
+        return ['/styles/layout.css']
+    }
     get date(){
         return new Date(this.dataset.date);
     }

@@ -4,11 +4,17 @@ import './calendar-header.js';
 import './calendar-body.js';
 
 class XCalendar extends BaseElement {
-    connectedCallback(){
+    static get styles() {
+        return [
+            '/styles/layout.css',
+            '/calendar.css'
+        ]
+    }
+    connectedCallback() {
         super.connectedCallback();
         dateService.start();
     }
-    disconnectedCallback(){
+    disconnectedCallback() {
         super.disconnectedCallback();
         dateService.stop();
     }

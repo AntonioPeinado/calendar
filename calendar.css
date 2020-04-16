@@ -1,8 +1,12 @@
-:host{
+:host {
     display: block;
     background-color: var(--x-color-primary);
     color: var(--x-color-text-primary);
     width: fit-content;
     height: fit-content;
     border: 1px solid var(--x-color-primary--light);
+}
+
+.x-calendar__header {
+    border-bottom: 1px solid var(--x-color-primary--light);
 }

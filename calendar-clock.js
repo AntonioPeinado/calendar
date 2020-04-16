@@ -3,6 +3,11 @@ import { dateService } from './date-service.js';
 import { DateFormatter } from './date-formatter.js';
 
 class XCalendarClock extends BaseElement {
+    static get styles(){
+        return [
+            '/calendar-clock.css'
+        ];
+    }
     get $text() {
         if (!this._$text) {
             this._$text = this.shadowRoot.getElementById('text');
@@ -25,7 +30,7 @@ class XCalendarClock extends BaseElement {
     }
     render() {
         return `
-            <p id="text">${this.timeString}</p>
+            <p class="x-clock" id="text">${this.timeString}</p>
         `;
     }
 }

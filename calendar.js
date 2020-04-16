@@ -8,7 +8,7 @@ class XCalendar extends BaseElement {
         return [
             '/styles/layout.css',
             '/calendar.css'
-        ]
+        ];
     }
     connectedCallback() {
         super.connectedCallback();
@@ -20,7 +20,7 @@ class XCalendar extends BaseElement {
     }
     render() {
         return `
-            <x-calendar-header></x-calendar-header>
+            <x-calendar-header class="x-calendar__header"></x-calendar-header>
             <x-calendar-body></x-calendar-body>
         `;
     }

@@ -1,0 +1,9 @@
+:host {
+    display: block;
+    padding: var(--x-padding-medium);
+}
+
+.x-header__date {
+    padding-top: var(--x-padding-tiny);
+    display: block;
+}

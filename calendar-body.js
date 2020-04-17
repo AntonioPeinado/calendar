@@ -2,10 +2,12 @@ import { BaseElement } from './core/base-element.js';
 import { dateService } from './date-service.js';
 import './calendar-summary.js';
 import './calendar-navigation.js';
-import './calendar-weekdays.js';
 import './calendar-month.js';
 
 class XCalendarBody extends BaseElement {
+    static get styles(){
+        return ['/calendar-body.css']
+    }
     constructor() {
         super();
         this._selectedDate = new Date(dateService.date);
@@ -40,9 +42,10 @@ class XCalendarBody extends BaseElement {
     }
     render() {
         return `
-            <x-calendar-summary id="summary" data-date="${this._selectedDate}"></x-calendar-summary>
-            <x-calendar-navigation id="navigation"></x-calendar-navigation>
-            <x-calendar-weekdays></x-calendar-weekdays>
+            <div class="x-body__top">
+                <x-calendar-summary id="summary" data-date="${this._selectedDate}"></x-calendar-summary>
+                <x-calendar-navigation id="navigation"></x-calendar-navigation>
+            </div>
             <x-calendar-month id="month" data-date="${this._selectedDate}"></x-calendar-month>
         `;
     }

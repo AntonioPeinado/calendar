@@ -5,7 +5,7 @@ class XCalendarDay extends BaseElement {
         return new Date(this.dataset.date);
     }
     render() {
-        return `<p>${this.date.getDate()}</p>`
+        return `<div>${this.date.getDate()}</div>`
     }
 }
 

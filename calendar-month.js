@@ -2,13 +2,15 @@ import { BaseElement } from './core/base-element.js';
 import { MonthHelper } from './month-helper.js';
 import { config } from './config.js';
 import { dateService } from './date-service.js'
+import { WEEKDAY_LETTERS } from './date-constants.js';
+
 import './calendar-day.js';
 
 const DAYS_PER_WEEK = 7;
 
 class XCalendarMonth extends BaseElement {
     static get styles(){
-        return ['/styles/layout.css']
+        return ['/calendar-month.css']
     }
     get date(){
         return new Date(this.dataset.date);
@@ -46,6 +48,16 @@ class XCalendarMonth extends BaseElement {
     _findCalendarDay(path){
         return path.find((el) => el.localName === 'x-calendar-day');
     }
+    _getWeekDays() {
+        const days = [];
+        for(let delante = config.startDay; delante < WEEKDAY_LETTERS.length; delante++ ){
+            days.push(WEEKDAY_LETTERS[delante]);
+        }
+        for (let detras = 0; detras < config.startDay; detras++){
+            days.push(WEEKDAY_LETTERS[detras])
+        }
+        return days;
+    }
     _renderDay(day){
         const attrs = [];
         if (dateService.isToday(day)) {
@@ -54,29 +66,17 @@ class XCalendarMonth extends BaseElement {
         if (day.getMonth() !== this.date.getMonth()) {
             attrs.push('data-outside');
         }
-        return `<x-calendar-day ${attrs.join(' ')} data-date="${day.toDateString()}"></x-calendar-day>`
+        return `<x-calendar-day class="x-month__item" ${attrs.join(' ')} data-date="${day.toDateString()}"></x-calendar-day>`
     }
     _renderDays() {
         return this.days.map((day) => this._renderDay(day)).join('')
     }
+    _renderWeekdays(){
+        return this._getWeekDays().map((wd)=> `<div class="x-month__item">${wd}</div>`).join('');
+    }
     render() {
         return `
-            <style>
-                :host {
-                    display: grid;
-                    grid-template-columns: 50px 50px 50px 50px 50px 50px 50px;
-                }
-                x-calendar-day[data-today] {
-                    background-color: blue;
-                    color: white;
-                }
-                x-calendar-day[data-outside] {
-                    background-color: lightgrey;
-                }
-                x-calendar-day[data-selected] {
-                    border: 1px solid blue;
-                }
-            </style>
+            ${this._renderWeekdays()}
             ${this._renderDays()}
         `
 

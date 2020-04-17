@@ -1,0 +1,4 @@
+.x-navigation__icon {
+    fill: var(--x-color-text-primary);
+    cursor: pointer;
+}

@@ -21,7 +21,7 @@ class XCalendar extends BaseElement {
     render() {
         return `
             <x-calendar-header class="x-calendar__header"></x-calendar-header>
-            <x-calendar-body></x-calendar-body>
+            <x-calendar-body class="x-calendar__body"></x-calendar-body>
         `;
     }
 }

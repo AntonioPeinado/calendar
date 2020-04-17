@@ -2,11 +2,15 @@
     display: block;
     background-color: var(--x-color-primary);
     color: var(--x-color-text-primary);
-    width: fit-content;
+    width: 60%;
     height: fit-content;
     border: 1px solid var(--x-color-primary--light);
 }
 
 .x-calendar__header {
     border-bottom: 1px solid var(--x-color-primary--light);
+}
+.x-calendar__body {
+    display: block;
+    padding: var(--x-padding-small);
 }

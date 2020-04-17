@@ -3,7 +3,7 @@ import { dateService } from './date-service.js';
 import { DateFormatter } from './date-formatter.js';
 
 class XCalendarClock extends BaseElement {
-    static get styles(){
+    static get styles() {
         return [
             '/calendar-clock.css'
         ];
